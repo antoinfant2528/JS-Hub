@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scopes | JS Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        background: #f8f5f0;
+        color: #3a2e2a;
+      }
+      .navbar {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        width: 100%;
+        background: transparent;
+        z-index: 10;
+      }
+      .navbar ul {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar li {
+        font-family: "Bungee", cursive;
+        font-size: 1.5rem;
+        color: #7f5429;
+      }
+      .navbar .brand {
+        font-weight: bold;
+        font-size: 1.8rem;
+      }
+      .navbar a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .navbar a:hover li {
+        color: #d4c9b6;
+        cursor: pointer;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, #f8f5f0 70%, #f0e2d2);
+        text-align: center;
+      }
+      .hero h1 {
+        font-family: "Bungee", cursive;
+        font-size: 3rem;
+        color: #5b3a1f;
+      }
+      .hero p {
+        color: #7a5e42;
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin-bottom: 30px;
+      }
+      .hero a {
+        background: #b9936c;
+        color: white;
+        text-decoration: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+      }
+      .hero a:hover {
+        background: #967051;
+        transform: scale(1.05);
+      }
+
+      .concept-detail {
+        max-width: 950px;
+        margin: 80px auto;
+        background: #fff8f1;
+        padding: 50px;
+        border-radius: 18px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        font-family: "Bungee", cursive;
+        color: #3e2b22;
+      }
+      h2 {
+        color: #4a3a32;
+        margin-top: 40px;
+      }
+      p {
+        line-height: 1.8;
+        color: #453a34;
+      }
+      pre {
+        background: #f0e2d2;
+        color: #2c241f;
+        padding: 18px;
+        border-radius: 12px;
+        overflow-x: auto;
+        font-size: 0.95rem;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+      .back-btn {
+        display: inline-block;
+        background: #b9936c;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 30px;
+      }
+      .back-btn:hover {
+        background: #967051;
+        transform: scale(1.05);
+      }
+      footer {
+        background: #e5d5c0;
+        padding: 25px 60px;
+        text-align: center;
+        color: #3e2b22;
+        border-top: 1px solid #d9c7b3;
+        margin-top: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <ul>
+        <li id="index" class="brand">JS Hub</li>
+        <li id="quiz">Quiz</li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <h1>Scopes</h1>
+      <p>
+        Understand how variables live and where they can be accessed in
+        JavaScript.
+      </p>
+      <a href="#concept">Learn More ↓</a>
+    </section>
+
+    <section id="concept" class="concept-detail">
+      <h1>JavaScript Scope Explained</h1>
+      <p>
+        <strong>Scope</strong> determines the visibility or accessibility of
+        variables. It defines where variables can be used in your code.
+      </p>
+
+      <h2>1. Global Scope</h2>
+      <p>
+        Variables declared outside any function or block are globally scoped —
+        accessible anywhere in the script.
+      </p>
+      <pre><code>var name = "Anto";
+
+function greet() {
+  console.log(name); // Accessible
+}
+
+greet();</code></pre>
+
+      <h2>2. Function Scope</h2>
+      <p>
+        Variables declared inside a function are accessible only within that
+        function.
+      </p>
+      <pre><code>function test() {
+  var message = "Hello World";
+  console.log(message);
+}
+console.log(message); // ❌ Error - not defined</code></pre>
+
+      <h2>3. Block Scope (let & const)</h2>
+      <p>
+        With <code>let</code> and <code>const</code>, JavaScript introduced
+        block scope — variables exist only inside curly braces <code>{}</code>.
+      </p>
+      <pre><code>{
+  let a = 10;
+  const b = 20;
+}
+console.log(a); // ❌ ReferenceError</code></pre>
+
+      <h2>4. Lexical Scope</h2>
+      <p>
+        Inner functions can access variables of their outer functions — this is
+        called <strong>lexical scoping</strong>.
+      </p>
+      <pre><code>function outer() {
+  let outerVar = "Outer";
+
+  function inner() {
+    console.log(outerVar); // ✅ Works!
+  }
+
+  inner();
+}</code></pre>
+
+      <a href="index.html" class="back-btn" target="_parent">← Back to Home</a>
+    </section>
+    <footer>© 2025 JS Hub | Designed by Anto ✨</footer>
+    <script src="script.js"></script>
+  </body>
+</html>

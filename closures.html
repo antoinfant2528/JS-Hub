@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scopes | JS Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        background: #f8f5f0;
+        color: #3a2e2a;
+      }
+      .navbar {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        width: 100%;
+        background: transparent;
+        z-index: 10;
+      }
+      .navbar ul {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar li {
+        font-family: "Bungee", cursive;
+        font-size: 1.5rem;
+        color: #7f5429;
+      }
+      .navbar .brand {
+        font-weight: bold;
+        font-size: 1.8rem;
+      }
+      .navbar a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .navbar a:hover li {
+        color: #d4c9b6;
+        cursor: pointer;
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, #f8f5f0 70%, #f0e2d2);
+        text-align: center;
+      }
+      .hero h1 {
+        font-family: "Bungee", cursive;
+        font-size: 3rem;
+        color: #5b3a1f;
+      }
+      .hero p {
+        color: #7a5e42;
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin-bottom: 30px;
+      }
+      .hero a {
+        background: #b9936c;
+        color: white;
+        text-decoration: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+      }
+      .hero a:hover {
+        background: #967051;
+        transform: scale(1.05);
+      }
+
+      .concept-detail {
+        max-width: 950px;
+        margin: 80px auto;
+        background: #fff8f1;
+        padding: 50px;
+        border-radius: 18px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        font-family: "Bungee", cursive;
+        color: #3e2b22;
+      }
+      h2 {
+        color: #4a3a32;
+        margin-top: 40px;
+      }
+      p {
+        line-height: 1.8;
+        color: #453a34;
+      }
+      pre {
+        background: #f0e2d2;
+        color: #2c241f;
+        padding: 18px;
+        border-radius: 12px;
+        overflow-x: auto;
+        font-size: 0.95rem;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+      .back-btn {
+        display: inline-block;
+        background: #b9936c;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 30px;
+      }
+      .back-btn:hover {
+        background: #967051;
+        transform: scale(1.05);
+      }
+      footer {
+        background: #e5d5c0;
+        padding: 25px 60px;
+        text-align: center;
+        color: #3e2b22;
+        border-top: 1px solid #d9c7b3;
+        margin-top: 80px;
+      }
+    </style>
+  </head>
+          <nav class="navbar" id="navbar">
+          <ul>
+            <li id="index" class="brand">JS Hub</li>
+            <li id="quiz">Quiz</li>
+          </ul>
+        </nav>
+
+        <section class="hero">
+          <h1>Clousers</h1>
+          <p>
+            Understand how variables live and where they can be accessed in
+            JavaScript.
+          </p>
+          <a href="#concept">Learn More ↓</a>
+        </section>
+
+<section id="concept" class="concept-detail">
+    <h1>JavaScript Closures Explained</h1>
+    <p>
+        A **Closure** is a fundamental concept in JavaScript. It is created when an inner function is returned from an outer function, allowing the inner function to **retain access** to the outer function's variables, **even after the outer function has finished executing** and its execution context has been closed.
+    </p>
+    <p>
+        Think of a closure as a function bundled together with references to its surrounding state (its lexical environment).
+    </p>
+
+    <h2>The Closure in Action</h2>
+    <p>
+        In this example, the inner anonymous function keeps a "memory" of the <code>count</code> variable from the <code>createCounter</code> function, allowing it to increment that same variable across multiple calls.
+    </p>
+    <pre><code>function createCounter() {
+  let count = 0; // This variable is enclosed by the inner function
+
+  return function() {
+    count++; // The inner function (the closure) accesses and modifies 'count'
+    console.log(count);
+  };
+}
+
+// 1. We call createCounter(), which executes and returns the inner function.
+const counter1 = createCounter(); 
+const counter2 = createCounter(); // Creates a completely separate closure/memory for 'count'
+
+counter1(); // Logs: 1 (Closure 1's count starts at 0, goes to 1)
+counter1(); // Logs: 2 (Closure 1 remembers count was 1, goes to 2)
+
+counter2(); // Logs: 1 (Closure 2's count starts at 0, goes to 1)</code></pre>
+
+    <a href="index.html" class="back-btn" target="_parent">← Back to Home</a>
+</section>
+        <footer>© 2025 JS Hub | Designed by Anto ✨</footer>
+        <script src="script.js"></script>
+      </body>
+    </html>
+
+ 

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async JavaScript</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        border: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        background: #f8f5f0;
+        color: #3a2e2a;
+      }
+        .navbar {
+          width: 100%;
+          background: transparent;
+          margin-bottom: 50px;
+            }
+
+        .navbar ul {
+            display: flex;
+            justify-content:space-around ;
+            align-items: center;
+            list-style: none;
+          
+        }
+
+        .navbar li {
+          text-decoration: none;
+          font-family: 'Bungee', cursive;
+          font-size: 1.5rem;
+          color: #af9f79;
+          letter-spacing: 1px;
+          cursor: pointer;
+        }
+        .navbar .brand {
+          color:#ffffff;
+            font-weight: bold;
+            font-size: 1.6rem;
+        }
+        .navbar a  {
+            text-decoration: none;
+            color: inherit;
+        }
+        .navbar  li:hover {
+            color: #d4c9b6;
+            cursor: pointer;
+            
+        }
+      .hero {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background: linear-gradient(to bottom, #f8f5f0 70%, #f0e2d2);
+      }
+      .hero h1 {
+        font-family: "Bungee", cursive;
+        font-size: 3rem;
+        color: #5b3a1f;
+      }
+      .hero p {
+        color: #7a5e42;
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin-bottom: 30px;
+      }
+      .hero a {
+        margin-top: 50px;
+        background: #b9936c;
+        color: white;
+        text-decoration: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+      }
+      .hero a:hover {
+        background: #967051;
+        transform: scale(1.05);
+      }
+      .concepts {
+        max-width: 950px;
+        border: 1px solid #d5cfcf;
+        background-color: #fff8f1;
+        border-radius: 10px;
+        margin: 80px auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .concepts h2 {
+        color: #3a2e2a;
+        margin-top: 40px;
+        font-family: "Bungee", cursive;
+        font-size: 1.5rem;
+        font-weight:bold ;
+      }
+      .concepts p {
+        line-height: 1.8;
+        color: #453a34;
+        margin: 15px;
+      }
+      pre {
+        background: #f0e2d2;
+        color: #2c241f;
+        padding: 18px;
+        border-radius: 12px;
+        overflow-x: auto;
+        font-size: 0.95rem;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+      .back-btn {
+        display: inline-block;
+        background: #b9936c;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 30px;
+
+      }
+      .back-btn:hover {
+        background: #967051;
+        transform: scale(1.05);
+      }
+      footer {
+        background: #e5d5c0;
+        padding: 25px 60px;
+        text-align: center;
+        color: #3e2b22;
+        border-top: 1px solid #d9c7b3;
+        margin-top: 80px;
+      }
+    </style>
+  </head>
+  <body>
+     <nav class="navbar" id="navbar">
+      <ul>
+        <li id="index" class="brand">JS Hub</li>
+        <li id="quiz">Quiz</li>
+      </ul>
+    </nav>
+    <section class="hero">
+      
+      <h1>Asynchronous JavaScript</h1>
+      <p>
+        Asynchronous JavaScript allows you to perform tasks without blocking the
+        main thread, enabling smoother user experiences. Common asynchronous
+        patterns include callbacks, promises, and async/await.
+      </p>
+      <a href="#concept">Learn More ↓</a>
+    </section>
+    <section class="concepts">
+      <h2>Callbacks</h2>
+      <p>
+        A <strong>Callback</strong>  is a function passed as an argument to another function,
+        which is executed after a certain event or operation is completed.
+      </p>
+      <pre><code>function fetchData(callback) {
+    setTimeout(() => {
+      const data = 'Sample Data';
+      callback(data);
+    }, 1000);
+  }
+  fetchData((data) => {
+    console.log(data); // Output after 1 second: Sample Data
+  });</code></pre>
+
+      <h2>Promises</h2>
+      <p>
+        A promise is an object that represents the eventual completion (or
+        failure) of an asynchronous operation and its resulting value.
+      </p>
+      <pre><code>const fetchData = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = 'Sample Data';
+      resolve(data);
+    }, 1000);
+  });
+  fetchData.then((data) => {
+    console.log(data); // Output after 1 second: Sample Data
+  });</code></pre>
+
+      <h2>Async/Await</h2>
+      <p>
+        Async/await is syntactic sugar built on top of promises, allowing you to
+        write asynchronous code that looks synchronous.
+      </p>
+      <pre><code>function fetchData() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const data = 'Sample Data';
+        resolve(data);
+      }, 1000);
+    });
+  }
+  async function getData() {
+    const data = await fetchData();
+    console.log(data); // Output after 1 second: Sample Data
+  }
+  getData();</code></pre>
+
+    <a href="index.html" class="back-btn" target="_parent">← Back to Home</a>
+    </section>
+
+    <footer>© 2025 JS Hub | Designed by Anto ✨</footer>
+    <script src="script.js"></script>
+
+  </body>
+</html>
